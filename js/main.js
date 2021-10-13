@@ -1,3 +1,5 @@
+const ARRAY_NUMBER = 25;
+
 const getRandomInt = function (min, max) {
   if (min < 0 || min >= max) {
     return 'Введено число меньше 0 либо задан неправильный интервал';
@@ -14,25 +16,12 @@ getStringLenth('find string length', 5);
 
 const getArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
 
-let unitNumber = 0;
-
-const getNumber = (quantity) => {
-  for (;;) {
-    if (unitNumber < quantity) {
-      return unitNumber++;
-    }
-  }
-};
-
 const getComment = (array) => {
   if (getRandomInt(1,2)===2) {
     return `${getArrayElement(array)} ${getArrayElement(array)}`;
   }
   return getArrayElement(array);
 };
-
-const ARRAY_NUMBER = 25;
-const ID_NUMBER = 150;
 
 const DESCRIPTIONS = [
   'Фотография природы',
@@ -68,24 +57,24 @@ const COMMENT = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
+const getCommentObject = (unitNumber = 0) => [
+  {
+    id: unitNumber++,
+    avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
+    message: getComment(COMMENT),
+    name: getArrayElement(NAMES),
+  },
+];
 
-const getPhotoDescription = () => {
-  const description = {
-    id: getNumber(ARRAY_NUMBER),
-    url: `photos/${getNumber(ARRAY_NUMBER)}.jpg`,
-    description: getArrayElement(DESCRIPTIONS),
-    likes: getRandomInt(15, 200),
-    comment: [
-      {
-        id: getNumber(ID_NUMBER),
-        avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
-        message: getComment(COMMENT),
-        name: getArrayElement(NAMES),
-      },
-    ],
-  };
-  return description;
-};
+const getNewArray = () => Array.from({length: getRandomInt(1, 20)}, getCommentObject);
 
-const photoDescription = Array.from({length: ARRAY_NUMBER}, getPhotoDescription());
+const getPhotoDescription = (unitNumber = 0) => ({
+  id: unitNumber++,
+  url: `photos/${unitNumber++}.jpg`,
+  description: getArrayElement(DESCRIPTIONS),
+  likes: getRandomInt(15, 200),
+  comments: getNewArray(),
+});
+
+const photoDescription = Array.from({length: ARRAY_NUMBER}, getPhotoDescription);
 photoDescription;
