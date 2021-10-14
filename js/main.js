@@ -1,28 +1,5 @@
 const ARRAY_NUMBER = 25;
 
-const getRandomInt = function (min, max) {
-  if (min < 0 || min >= max) {
-    return 'Введено число меньше 0 либо задан неправильный интервал';
-  }
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-getRandomInt(0, 100);
-
-const getStringLenth = (string, maxLength) => string.length <= maxLength;
-getStringLenth('find string length', 5);
-
-const getArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
-
-const getComment = (array) => {
-  if (getRandomInt(1,2)===2) {
-    return `${getArrayElement(array)} ${getArrayElement(array)}`;
-  }
-  return getArrayElement(array);
-};
-
 const DESCRIPTIONS = [
   'Фотография природы',
   'красиво озеро',
@@ -57,9 +34,33 @@ const COMMENT = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const getCommentObject = (unitNumber = 0) => [
+const getRandomInt = function (min, max) {
+  if (min < 0 || min >= max) {
+    return 'Введено число меньше 0 либо задан неправильный интервал';
+  }
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+getRandomInt(0, 100);
+
+const getStringLenth = (string, maxLength) => string.length <= maxLength;
+getStringLenth('find string length', 5);
+
+const getArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
+
+const getComment = (array) => {
+  if (getRandomInt(1,2)===2) {
+    return `${getArrayElement(array)} ${getArrayElement(array)}`;
+  }
+  return getArrayElement(array);
+};
+let number = 1;
+
+const getCommentObject = () => [
   {
-    id: unitNumber++,
+    id: number++,
     avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
     message: getComment(COMMENT),
     name: getArrayElement(NAMES),
@@ -68,9 +69,9 @@ const getCommentObject = (unitNumber = 0) => [
 
 const getNewArray = () => Array.from({length: getRandomInt(1, 20)}, getCommentObject);
 
-const getPhotoDescription = (unitNumber = 0) => ({
-  id: unitNumber++,
-  url: `photos/${unitNumber++}.jpg`,
+const getPhotoDescription = () => ({
+  id: number++,
+  url: `photos/${number++}.jpg`,
   description: getArrayElement(DESCRIPTIONS),
   likes: getRandomInt(15, 200),
   comments: getNewArray(),
