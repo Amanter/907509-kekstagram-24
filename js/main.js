@@ -50,32 +50,30 @@ getStringLenth('find string length', 5);
 
 const getArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
 
+
 const getComment = (array) => {
   if (getRandomInt(1,2)===2) {
     return `${getArrayElement(array)} ${getArrayElement(array)}`;
   }
   return getArrayElement(array);
 };
-let number = 1;
 
-const getCommentObject = () => [
-  {
-    id: number++,
-    avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
-    message: getComment(COMMENT),
-    name: getArrayElement(NAMES),
-  },
-];
+const getCommentObject = (num) => ({
+  id: num+1,
+  avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
+  message: getComment(COMMENT),
+  name: getArrayElement(NAMES),
+});
 
-const getNewArray = () => Array.from({length: getRandomInt(1, 20)}, getCommentObject);
+const getNewArray = () => Array.from({length: getRandomInt(1, 20)}, (value, num) => getCommentObject(num++));
 
-const getPhotoDescription = () => ({
-  id: number++,
-  url: `photos/${number++}.jpg`,
+const getPhotoDescription = (num) => ({
+  id: num+1,
+  url: `photos/${num+1}.jpg`,
   description: getArrayElement(DESCRIPTIONS),
   likes: getRandomInt(15, 200),
   comments: getNewArray(),
 });
 
-const photoDescription = Array.from({length: ARRAY_NUMBER}, getPhotoDescription);
+const photoDescription = Array.from({length: ARRAY_NUMBER}, (value, num) => getPhotoDescription(num++));
 photoDescription;
