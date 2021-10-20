@@ -2,7 +2,7 @@ import {photoDescription} from './main.js';
 
 const pictureContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const fragment = document.createDocumentFragment()
+const fragment = document.createDocumentFragment();
 
 const createPhotoDescription = photoDescription;
 createPhotoDescription.forEach((photoArr) => {
