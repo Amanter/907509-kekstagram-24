@@ -1,4 +1,5 @@
-import {ARRAY_NUMBER, getPhotoDescription} from './data.js';
+import {photoDescription} from './data.js';
+import {createPhotoDescription} from './render-pic.js';
 
-const photoDescription = Array.from({length: ARRAY_NUMBER}, (value, num) => getPhotoDescription(num++));
-photoDescription;
+createPhotoDescription(photoDescription);
+
