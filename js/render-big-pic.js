@@ -45,12 +45,7 @@ const closeBigPicture = () => {
   socialCommentsLoader.classList.remove('hidden');
 };
 
-bigPictureClose.addEventListener('click', () => {
-  sectionBigPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
-  socialCommentCount.classList.remove('hidden');
-  socialCommentsLoader.classList.remove('hidden');
-});
+bigPictureClose.addEventListener('click', closeBigPicture());
 
 document.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
