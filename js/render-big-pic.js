@@ -1,4 +1,3 @@
-import {photoDescription} from './data.js';
 const body = document.querySelector('body');
 const sectionBigPicture = document.querySelector('.big-picture');
 const bigPictureItem = document.querySelector('.big-picture__img');
@@ -19,8 +18,6 @@ const createComment = (comments) => {
   bigPictureComments.append(cloneComment);
 };
 
-const commentsValue = createComment(photoDescription);
-
 const openBigPicture = (photoData) => {
   bigPictureComments.innerHTML = '';
   sectionBigPicture.classList.remove('hidden');
@@ -31,22 +28,22 @@ const openBigPicture = (photoData) => {
   body.classList.add('modal-open');
   socialCommentCount.classList.add('hidden');
   socialCommentsLoader.classList.add('hidden');
-  photoData.comments.forEach(commentsValue);
+  photoData.comments.forEach(createComment);
 };
 
-const closePicture = () => {
+const closeBigPicture = () => {
   sectionBigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   socialCommentCount.classList.remove('hidden');
   socialCommentsLoader.classList.remove('hidden');
 };
 
-bigPictureClose.addEventListener('click', closePicture());
+bigPictureClose.addEventListener('click', closeBigPicture());
 
 document.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
-    closePicture();
+    closeBigPicture();
   }
 });
 
