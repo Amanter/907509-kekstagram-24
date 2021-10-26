@@ -1,6 +1,6 @@
 const body = document.querySelector('body');
 const sectionBigPicture = document.querySelector('.big-picture');
-const bigPictureItem = document.querySelector('.big-picture__img');
+const bigPictureItem = document.querySelector('.big-picture__img img');
 const bigPictureLikes = document.querySelector('.likes-count');
 const bigPictureCommentsCount = document.querySelector('.comments-count');
 const bigPictureDescription = document.querySelector('.social__caption');

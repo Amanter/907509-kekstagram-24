@@ -4,4 +4,4 @@ import {openBigPicture} from './render-big-pic.js';
 
 createPhotoDescription(photoDescription);
 
-openBigPicture(photoDescription);
+openBigPicture(photoDescription[1]);

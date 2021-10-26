@@ -54,6 +54,5 @@ const getPhotoDescription = (num) => ({
 });
 
 const photoDescription = Array.from({length: ARRAY_NUMBER}, (value, num) => getPhotoDescription(num++));
-photoDescription;
 
 export {ARRAY_NUMBER, photoDescription};
