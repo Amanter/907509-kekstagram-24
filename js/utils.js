@@ -22,4 +22,6 @@ const getComment = (array) => {
   return getArrayElement(array);
 };
 
-export {getRandomInt, getArrayElement, getComment};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomInt, getArrayElement, getComment, isEscapeKey};
