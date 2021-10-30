@@ -46,8 +46,15 @@ function onPhotoEditKeydown (evt) {
 
 inputHashText.addEventListener('input', () => {
   const hashTextArray = inputHashText.value.split(' ').toLowerCase();
+  const newHashtagArray = [];
 
   hashTextArray.forEach((hashText) => {
+    if (newHashtagArray.includes(hashText)) {
+      inputHashText.setCustomValidity('Такой хэш-тэг уже есть');
+    }
+    else {
+      newHashtagArray.push(hashText);
+    }
     if (hashText.match(/^#/) !== '#' ) {
       inputHashText.setCustomValidity('Хеш-тег должен начинаться с символа # - решётка.');
     }
