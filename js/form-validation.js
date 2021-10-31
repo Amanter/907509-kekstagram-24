@@ -37,12 +37,12 @@ function onPhotoEditKeydown (evt) {
   }
 }
 
-/* const onFocusRemoveEsc = (evt) => {
+inputHashText.addEventListener('keydown', (evt) => {
   if (isEscapeKey(evt)) {
     evt.stopPropagation();
   }
-};
-*/
+});
+
 
 inputHashText.addEventListener('input', () => {
   const hashTextArray = inputHashText.value.split(' ').toLowerCase();

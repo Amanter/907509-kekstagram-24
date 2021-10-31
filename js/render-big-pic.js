@@ -1,7 +1,5 @@
 import {isEscapeKey} from './utils.js';
 
-const COMMENTS_NUMBER = 5;
-
 const body = document.querySelector('body');
 const sectionBigPicture = document.querySelector('.big-picture');
 const bigPictureItem = document.querySelector('.big-picture__img img');
