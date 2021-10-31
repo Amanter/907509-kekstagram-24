@@ -43,7 +43,6 @@ inputHashText.addEventListener('keydown', (evt) => {
   }
 });
 
-
 inputHashText.addEventListener('input', () => {
   const hashTextArray = inputHashText.value.split(' ').toLowerCase();
   const newHashtagArray = [];
