@@ -1,7 +1,5 @@
 import {isEscapeKey} from './utils.js';
 
-const COMMENTS_NUMBER = 5;
-
 const body = document.querySelector('body');
 const sectionBigPicture = document.querySelector('.big-picture');
 const bigPictureItem = document.querySelector('.big-picture__img img');
@@ -21,15 +19,6 @@ const createComment = (comments) => {
   cloneComment.querySelector('.social__text').textContent = comments.message;
   bigPictureComments.append(cloneComment);
 };
-
-const openBigPic = () => {
-  bigPicture.classList.remove('hidden');
-  body.classList.add('modal-open');
-  closeBigPicBtn.addEventListener('click', closeBigPic);
-
-  document.addEventListener('keydown', onPopupEscKeydown);
-};
-
 
 const createBigPicture = (photoData) => {
   bigPictureComments.innerHTML = '';
