@@ -16,28 +16,31 @@ const socialCommentsLoader = document.querySelector('.comments-loader');
 
 let commentsArray = [];
 
-const createComment = (comments) => {
-  const cloneComment = socialCloneCommentNode.cloneNode(true);
-  cloneComment.querySelector('.social__picture').src = comments.avatar;
-  cloneComment.querySelector('.social__picture').alt = comments.name;
-  cloneComment.querySelector('.social__text').textContent = comments.message;
-  bigPictureComments.append(cloneComment);
+const createComment = (photoData) => {
+  const fragment = document.createDocumentFragment();
+  photoData.forEach((comments) => {
+    const cloneComment = socialCloneCommentNode.cloneNode(true);
+    cloneComment.querySelector('.social__picture').src = comments.avatar;
+    cloneComment.querySelector('.social__picture').alt = comments.name;
+    cloneComment.querySelector('.social__text').textContent = comments.message;
+    fragment.append(cloneComment);
+  });
+  return fragment;
 };
 
-function generateComments (comments) {
+const  generateComments = (comments) => {
 
   const firstComments = comments.slice(0, FIVE_COMMENTS);
   const openComments = createComment(firstComments);
-
   socialCommentCount.firstChild.textContent = `${firstComments.length  } из  `;
   bigPictureComments.appendChild(openComments);
 
   if (firstComments.length === comments.length) {
     socialCommentsLoader.classList.add('hidden');
   }
-}
+};
 
-const addComments = () => {
+const addCommentsOnClick = () => {
   const newComments = commentsArray.slice(
     bigPictureComments.children.length,
     bigPictureComments.children.length + FIVE_COMMENTS);
@@ -64,9 +67,9 @@ const createBigPicture = (photoData) => {
   bigPictureComments.innerHTML = '';
 
   bigPictureClose.addEventListener('click', openBigPicture);
-  socialCommentsLoader.addEventListener('click', addComments);
+  socialCommentsLoader.addEventListener('click', addCommentsOnClick);
 
-  generateComments(photoData);
+  generateComments(photoData.comments);
 };
 
 function openBigPicture () {
