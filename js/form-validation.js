@@ -7,28 +7,28 @@ const MAX_COMMENT_LENGTH = 140;
 const regExpression = /^#[A-Za-zА-Яа-яЁё0-9]*$|(^$)/;
 
 const body = document.querySelector('body');
-const uploadImg = document.querySelector('.img-upload__input');
-const redactingFormPic = document.querySelector('.img-upload__overlay');
-const closeButton = document.querySelector('.upload-cancel');
+const redactingFormPic = document.querySelector('#upload-file');
+const closeButton = document.querySelector('#upload-cancel');
 const inputHashText = document.querySelector('.text__hashtags');
 const inputComment = document.querySelector('.text__description');
+const imgUpload = document.querySelector('.img-upload__overlay');
 
 
 const closeModalEdit = () => {
-  redactingFormPic.classList.remove('.hidden');
-  body.classList.add('modal-open');
+  imgUpload.classList.add('hidden');
+  body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPhotoEditKeydown);
   closeButton.removeEventListener('click', closeModalEdit);
 };
 
 const openModalEdit = () => {
-  redactingFormPic.classList.remove('.hidden');
+  imgUpload.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPhotoEditKeydown);
   closeButton.addEventListener('click', closeModalEdit);
 };
 
-uploadImg.addEventListener('change', () => openModalEdit());
+redactingFormPic.addEventListener('change', () => openModalEdit());
 
 function onPhotoEditKeydown (evt) {
   if (isEscapeKey(evt)) {
@@ -43,10 +43,10 @@ inputHashText.addEventListener('keydown', (evt) => {
   }
 });
 
-
 inputHashText.addEventListener('input', () => {
-  const hashTextArray = inputHashText.value.split(' ').toLowerCase();
+  const hashTextArray = inputHashText.value.split(' ');
   const newHashtagArray = [];
+  inputHashText.setCustomValidity('');
 
   hashTextArray.forEach((hashText) => {
     if (newHashtagArray.includes(hashText)) {
@@ -55,11 +55,8 @@ inputHashText.addEventListener('input', () => {
     else {
       newHashtagArray.push(hashText);
     }
-    if (hashText.match(/^#/) !== '#' ) {
-      inputHashText.setCustomValidity('Хеш-тег должен начинаться с символа # - решётка.');
-    }
     if (!regExpression.test(hashText)) {
-      inputHashText.setCustomValidity('Хеш-тег не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации, эмодзи и т.д.');
+      inputHashText.setCustomValidity('Хеш-тег не может содержать пробелы, спецсимволы (#, @, $ и т. п.), и должен начинаться с #');
     }
     if (hashText.length > MAX_HASHTAG_LENGTH) {
       inputHashText.setCustomValidity('Максимальная длина одного хэш-тега 20 символов.');
@@ -67,7 +64,7 @@ inputHashText.addEventListener('input', () => {
     if (hashText === '#' ) {
       inputHashText.setCustomValidity('Хеш-тег не может состоять только из одной решётки.');
     }
-    if (hashText.length > MAX_HASHTAG_ARRAY_LENGTH) {
+    if (newHashtagArray.length > MAX_HASHTAG_ARRAY_LENGTH) {
       inputHashText.setCustomValidity('Нельзя указать больше пяти хэш-тегов.');
     }
   });

@@ -66,7 +66,7 @@ const createBigPicture = (photoData) => {
   bigPictureClose.addEventListener('click', openBigPicture);
   socialCommentsLoader.addEventListener('click', addComments);
 
-  generateComments(photoData.comments);
+  generateComments(photoData);
 };
 
 function openBigPicture () {
