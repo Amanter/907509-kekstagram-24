@@ -1,7 +1,8 @@
 import {photoDescription} from './data.js';
 import {createPhotoDescription} from './render-pic.js';
-import {openBigPicture} from './render-big-pic.js';
+import {createBigPicture} from './render-big-pic.js';
+import './form-validation.js';
 
 createPhotoDescription(photoDescription);
 
-openBigPicture(photoDescription[1]);
+createBigPicture(photoDescription[1]);

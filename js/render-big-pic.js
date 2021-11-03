@@ -1,3 +1,5 @@
+import {isEscapeKey} from './utils.js';
+
 const body = document.querySelector('body');
 const sectionBigPicture = document.querySelector('.big-picture');
 const bigPictureItem = document.querySelector('.big-picture__img img');
@@ -18,7 +20,7 @@ const createComment = (comments) => {
   bigPictureComments.append(cloneComment);
 };
 
-const openBigPicture = (photoData) => {
+const createBigPicture = (photoData) => {
   bigPictureComments.innerHTML = '';
   sectionBigPicture.classList.remove('hidden');
   bigPictureItem.src = photoData.url;
@@ -36,15 +38,16 @@ const closeBigPicture = () => {
   body.classList.remove('modal-open');
   socialCommentCount.classList.remove('hidden');
   socialCommentsLoader.classList.remove('hidden');
+  document.removeEventListener('keydown', onPhotoPopupKeydown);
 };
 
-bigPictureClose.addEventListener('click', closeBigPicture());
+bigPictureClose.addEventListener('click', () => closeBigPicture());
 
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
+function onPhotoPopupKeydown (evt) {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeBigPicture();
   }
-});
+}
 
-export {openBigPicture};
+export {createBigPicture};
