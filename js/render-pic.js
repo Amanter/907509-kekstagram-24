@@ -1,3 +1,5 @@
+import {photoDescription} from './data.js';
+
 const pictureContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const fragment = document.createDocumentFragment();
@@ -13,4 +15,4 @@ const createPhotoDescription = (photoData) => {
   pictureContainer.appendChild(fragment);
 };
 
-export {createPhotoDescription};
+createPhotoDescription(photoDescription);
