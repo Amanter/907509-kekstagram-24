@@ -13,6 +13,12 @@ const socialCloneCommentNode = document.querySelector('.social__comment');
 const bigPictureClose = document.querySelector('.big-picture__cancel');
 const socialCommentCount = document.querySelector('.social__comment-count');
 const socialCommentsLoader = document.querySelector('.comments-loader');
+const imagePreview = document.querySelector('.img-upload__preview');
+const uploadFile = document.querySelector('#upload-file');
+const noEffectRadio = document.querySelector('#effect-none');
+const sliderWrapper = document.querySelector('.img-upload__effect-level');
+const closeUpload = document.querySelector('#upload-cancel');
+const photoUpload = document.querySelector('.img-upload__overlay');
 
 let commentsArray = [];
 
@@ -77,26 +83,40 @@ function openBigPicture () {
   sectionBigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
 
-  bigPictureClose.addEventListener('click', closeBigPicture);
+  bigPictureClose.addEventListener('click', onCloseModalClick);
 
   document.addEventListener('keydown', onPhotoPopupKeydown);
 }
 
-function closeBigPicture () {
+function onCloseModalClick () {
   sectionBigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   socialCommentsLoader.classList.remove('hidden');
+  imagePreview.classList = 'img-upload__preview';
+  sliderWrapper.classList.add('visually-hidden');
+  imagePreview.style.filter = 'none';
+  noEffectRadio.checked = 'true';
+  uploadFile.value = '';
 
-  bigPictureClose.removeEventListener('click', closeBigPicture);
+  bigPictureClose.removeEventListener('click', onCloseModalClick);
 
   document.removeEventListener('keydown', onPhotoPopupKeydown);
 }
 
+const onUploadButtonClick = () => {
+  photoUpload.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+  closeUpload.addEventListener('click', onCloseModalClick);
+  document.addEventListener('keydown', onPhotoPopupKeydown);
+};
+
+uploadFile.addEventListener('change', onUploadButtonClick);
+
 function onPhotoPopupKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeBigPicture();
+    onCloseModalClick();
   }
 }
 
-export {createBigPicture};
+export {onCloseModalClick,createBigPicture};
