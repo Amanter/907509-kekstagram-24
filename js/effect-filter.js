@@ -117,6 +117,7 @@ const onEffects = () => {
     sliderOptionsHandler(effects.heat.MIN, effects.heat.MAX, effects.heat.START, effects.heat.STEP);
   }
 };
+
 noEffectButton.addEventListener('click', onEffects);
 chromeEffectButton.addEventListener('click', onEffects);
 sepiaEffectButton.addEventListener('click', onEffects);
