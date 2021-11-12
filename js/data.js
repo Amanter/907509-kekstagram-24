@@ -1,4 +1,4 @@
-import {getRandomInt, getArrayElement, getComment} from './utils.js';
+/*import {getRandomInt, getArrayElement, getComment} from './utils.js';
 
 const ARRAY_NUMBER = 25;
 
@@ -55,4 +55,4 @@ const getPhotoDescription = (num) => ({
 
 const photoDescription = Array.from({length: ARRAY_NUMBER}, (value, num) => getPhotoDescription(num++));
 
-export {ARRAY_NUMBER, photoDescription};
+export {ARRAY_NUMBER, photoDescription};*/

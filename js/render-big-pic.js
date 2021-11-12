@@ -1,6 +1,6 @@
 import {isEscapeKey} from './utils.js';
 
-const FIVE_COMMENTS = 5;
+const LOAD_FIVE_COMMENTS = 5;
 
 const body = document.querySelector('body');
 const sectionBigPicture = document.querySelector('.big-picture');
@@ -22,21 +22,21 @@ const photoUpload = document.querySelector('.img-upload__overlay');
 
 let commentsArray = [];
 
-const createComment = (photoData) => {
-  const fragment = document.createDocumentFragment();
-  photoData.forEach((comments) => {
+const createComment = (userComments) => {
+  const CommentsFragment = document.createDocumentFragment();
+  userComments.forEach((comments) => {
     const cloneComment = socialCloneCommentNode.cloneNode(true);
     cloneComment.querySelector('.social__picture').src = comments.avatar;
     cloneComment.querySelector('.social__picture').alt = comments.name;
     cloneComment.querySelector('.social__text').textContent = comments.message;
-    fragment.append(cloneComment);
+    CommentsFragment.append(cloneComment);
   });
-  return fragment;
+  return CommentsFragment;
 };
 
 const  generateComments = (comments) => {
 
-  const firstComments = comments.slice(0, FIVE_COMMENTS);
+  const firstComments = comments.slice(0, LOAD_FIVE_COMMENTS);
   const openComments = createComment(firstComments);
   socialCommentCount.firstChild.textContent = `${firstComments.length  } из  `;
   bigPictureComments.appendChild(openComments);
@@ -49,7 +49,7 @@ const  generateComments = (comments) => {
 const addCommentsOnClick = () => {
   const newComments = commentsArray.slice(
     bigPictureComments.children.length,
-    bigPictureComments.children.length + FIVE_COMMENTS);
+    bigPictureComments.children.length + LOAD_FIVE_COMMENTS);
   const generateNewComments = createComment(newComments);
 
   bigPictureComments.appendChild(generateNewComments);
