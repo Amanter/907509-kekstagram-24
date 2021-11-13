@@ -6,4 +6,6 @@ import './form-validation.js';
 import './render-big-pic.js';
 import './effect-filter.js';
 import './api.js';
+import './close.js';
+import './upload-button.js';
 

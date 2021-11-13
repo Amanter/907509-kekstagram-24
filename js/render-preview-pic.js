@@ -1,4 +1,4 @@
-const pictureContainer = document.querySelector('.pictures');
+const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picturesFragment = document.createDocumentFragment();
 
@@ -10,7 +10,7 @@ const createPhotos = (photoData) => {
     photoElement.querySelector('.picture__comments').textContent = comments.length;
     picturesFragment .appendChild(photoElement);
   });
-  pictureContainer.appendChild(picturesFragment);
+  pictures.appendChild(picturesFragment);
 };
 
 export {createPhotos};
