@@ -1,4 +1,5 @@
 const ALERT_SHOW_TIME = 5000;
+const TIME_DELAY = 500;
 
 const getRandomInt = function (min, max) {
   if (min < 0 || min >= max) {
@@ -47,4 +48,20 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomInt, getArrayElement, getComment, isEscapeKey, showAlert};
+const shuffle = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+};
+
+function debounce (callback, timeoutDelay = TIME_DELAY) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export {getRandomInt, getArrayElement, getComment, isEscapeKey, showAlert, shuffle, debounce};

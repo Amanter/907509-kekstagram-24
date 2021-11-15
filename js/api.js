@@ -1,8 +1,8 @@
 import {createPhotos} from './render-preview-pic.js';
 import {addComments} from './render-big-pic.js';
-import {onFormSuccessSend} from './server-messages.js';
-import {onFormErrorSend} from './server-messages.js';
+import {onFormSuccessSend, onFormErrorSend} from './server-messages.js';
 import {showAlert} from './utils.js';
+import {createFilter} from './filter.js';
 
 const imgUploadForm = document.querySelector('.img-upload__form');
 
@@ -12,6 +12,7 @@ const getData = () => {
     .then((userPhotos) => {
       createPhotos(userPhotos);
       addComments(userPhotos);
+      createFilter(userPhotos);
     })
     .catch(() => showAlert ('Ошибка при загрузке фото. Попробуйте ещё раз'));
 };
