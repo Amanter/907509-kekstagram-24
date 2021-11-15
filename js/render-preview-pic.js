@@ -1,6 +1,7 @@
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picturesFragment = document.createDocumentFragment();
+const buttonFilters = document.querySelector('.img-filters');
 
 const createPhotos = (photoData) => {
   photoData.forEach(({url, likes, comments}) => {
@@ -11,6 +12,7 @@ const createPhotos = (photoData) => {
     picturesFragment .appendChild(photoElement);
   });
   pictures.appendChild(picturesFragment);
+  buttonFilters.classList.remove('img-filters--inactive');
 };
 
 export {createPhotos};
