@@ -1,5 +1,6 @@
 const ALERT_SHOW_TIME = 5000;
 const TIME_DELAY = 500;
+const MAX_LENGTH = 5;
 
 const getRandomInt = function (min, max) {
   if (min < 0 || min >= max) {
@@ -10,10 +11,8 @@ const getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-getRandomInt(0, 100);
-
 const getStringLenth = (string, maxLength) => string.length <= maxLength;
-getStringLenth('find string length', 5);
+getStringLenth('find string length', MAX_LENGTH);
 
 const getArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
 
@@ -64,4 +63,4 @@ function debounce (callback, timeoutDelay = TIME_DELAY) {
   };
 }
 
-export {getRandomInt, getArrayElement, getComment, isEscapeKey, showAlert, shuffle, debounce};
+export {getRandomInt, getArrayElement, getComment, isEscapeKey, showAlert, shuffle, debounce, getStringLenth};
