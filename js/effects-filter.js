@@ -1,7 +1,7 @@
 const imagePreview = document.querySelector('.img-upload__preview');
 const effectLevelSlider = document.querySelector('.effect-level__slider');
 const effectLevel = document.querySelector('.effect-level__value');
-const sliderWrapper = document.querySelector('.img-upload__effect-level');
+const sliderContainer = document.querySelector('.img-upload__effect-level');
 
 const noEffectButton = document.querySelector('#effect-none');
 const chromeEffectButton = document.querySelector('#effect-chrome');
@@ -10,7 +10,7 @@ const marvinEffectButton = document.querySelector('#effect-marvin');
 const phobosEffectButton = document.querySelector('#effect-phobos');
 const heatEffectButton = document.querySelector('#effect-heat');
 
-sliderWrapper.classList.add('visually-hidden');
+sliderContainer.classList.add('visually-hidden');
 
 const effects = {
   chrome: {
@@ -75,7 +75,7 @@ noUiSlider.create(effectLevelSlider, {
 });
 
 const changeEffect = (effectClass, effectStyle, effectUnit) => {
-  sliderWrapper.classList.remove('visually-hidden');
+  sliderContainer.classList.remove('visually-hidden');
   imagePreview.classList = 'img-upload__preview';
   imagePreview.classList.add(`${effectClass}`);
   effectLevelSlider.noUiSlider.on('update', (values, handle) => {
@@ -98,7 +98,7 @@ const sliderOptionsHandler = (minValue, maxValue, startValue, stepValue) => {
 const onEffects = () => {
   if (noEffectButton.checked) {
     imagePreview.classList = 'img-upload__preview';
-    sliderWrapper.classList.add('visually-hidden');
+    sliderContainer.classList.add('visually-hidden');
     imagePreview.style.filter = 'none';
   } else if (chromeEffectButton.checked) {
     changeEffect(effects.chrome.HTML_CLASS, effects.chrome.NAME, effects.chrome.UNIT);
