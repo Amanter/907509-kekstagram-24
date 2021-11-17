@@ -1,6 +1,6 @@
 const imagePreview = document.querySelector('.img-upload__preview');
 const effectLevelSlider = document.querySelector('.effect-level__slider');
-const effectLevelValue = document.querySelector('.effect-level__value');
+const effectLevel = document.querySelector('.effect-level__value');
 const sliderWrapper = document.querySelector('.img-upload__effect-level');
 
 const noEffectButton = document.querySelector('#effect-none');
@@ -79,8 +79,8 @@ const changeEffect = (effectClass, effectStyle, effectUnit) => {
   imagePreview.classList = 'img-upload__preview';
   imagePreview.classList.add(`${effectClass}`);
   effectLevelSlider.noUiSlider.on('update', (values, handle) => {
-    effectLevelValue.value = values[handle];
-    imagePreview.style.filter = `${effectStyle}(${effectLevelValue.value}${effectUnit})`;
+    effectLevel.value = values[handle];
+    imagePreview.style.filter = `${effectStyle}(${effectLevel.value}${effectUnit})`;
   });
 };
 

@@ -8,7 +8,7 @@ const TEXT_VALIDATE = `Хэш-тег должен начинаться с сим
 Максимальная длина одного хэш-тега 20 символов, включая символ #.
 Хэш-теги должны разделяться пробелами`;
 const ERROR_NO_REPEAT = 'Хэштеги не должны повторяться';
-const MAX_COMMENTS_LENGHT = 140;
+const MAX_LENGHT = 140;
 const inputHashText = document.querySelector('.text__hashtags');
 const inputComment = document.querySelector('.text__description');
 
@@ -42,9 +42,9 @@ const validationFormHashtag = (evt) => {
 inputHashText.addEventListener('input', validationFormHashtag);
 
 const validationFormDescription = (evt) => {
-  const textDescriptionLength = getStringLenth(inputComment.value, MAX_COMMENTS_LENGHT);
+  const textDescriptionLength = getStringLenth(inputComment.value, MAX_LENGHT);
   if (!textDescriptionLength) {
-    inputComment.setCustomValidity(`Удалите лишние ${inputComment.value.length - MAX_COMMENTS_LENGHT} симв.`);
+    inputComment.setCustomValidity(`Удалите лишние ${inputComment.value.length - MAX_LENGHT} симв.`);
     inputComment.style.outlineColor = INVALID_INPUT_STYLE;
     evt.preventDefault();
   } else {

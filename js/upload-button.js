@@ -2,7 +2,7 @@ import {onCloseModalClick, onPopupEscKeydown} from './close.js';
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
-const uploadFile = document.querySelector('#upload-file');
+const fileUpload = document.querySelector('#upload-file');
 const closeUpload = document.querySelector('#upload-cancel');
 const photoUpload = document.querySelector('.img-upload__overlay');
 const fileChooser = document.querySelector('.img-upload__input');
@@ -15,7 +15,7 @@ const uploadPicture = () => {
   document.addEventListener('keydown', onPopupEscKeydown);
 };
 
-uploadFile.addEventListener('change', uploadPicture);
+fileUpload.addEventListener('change', uploadPicture);
 
 fileChooser.addEventListener('change', () => {
   const file = fileChooser.files[0];

@@ -1,4 +1,4 @@
-const pictures = document.querySelector('.pictures');
+const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picturesFragment = document.createDocumentFragment();
 const buttonFilters = document.querySelector('.img-filters');
@@ -11,7 +11,7 @@ const createPhotos = (photoData) => {
     photoElement.querySelector('.picture__comments').textContent = comments.length;
     picturesFragment .appendChild(photoElement);
   });
-  pictures.appendChild(picturesFragment);
+  picturesContainer.appendChild(picturesFragment);
   buttonFilters.classList.remove('img-filters--inactive');
 };
 
